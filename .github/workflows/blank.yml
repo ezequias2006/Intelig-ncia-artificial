@@ -1,0 +1,40 @@
+
+import nltk
+from nltk.chat.util import Chat, reflections
+
+nltk.download('nps_chat')
+
+# Definir pares de padrão e respostas
+pairs = [
+    [
+        r"Oi|Olá|E aí",
+        ["Oi, como posso ajudar?", "Olá! Em que posso te auxiliar?"]
+    ],
+    [
+        r"Qual é o seu nome?",
+        ["Eu sou uma inteligência artificial. Ainda não tenho um nome."]
+    ],
+    [
+        r"Qual é a sua função?",
+        ["Estou aqui para responder às suas perguntas e ajudar no que for possível."]
+    ],
+    [
+        r"Sair",
+        ["Até logo! Se precisar de mais ajuda, estou por aqui."]
+    ],
+]
+
+# Iniciar o chat
+chatbot = Chat(pairs, reflections)
+
+# Iniciar a interação
+print("Olá! Estou aqui para ajudar. Digite 'Sair' a qualquer momento para encerrar.")
+
+while True:
+    user_input = input("Você: ")
+    response = chatbot.respond(user_input)
+    print("IA:", response)
+
+    # Condição de saída
+    if user_input.lower() == 'sair':
+        break
